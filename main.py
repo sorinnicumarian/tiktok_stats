@@ -1,112 +1,101 @@
+import asyncio
+import tikapi
 import pandas as pd
-from TikTokApi import TikTokApi
 from datetime import datetime, timedelta
+import sys
+import json
 
-# Initialize TikTok API
-api = TikTokApi()
+def load_config(config_file="config.json"):
+    with open(config_file, 'r') as f:
+        return json.load(f)
 
-def get_videos_by_hashtag(hashtag, days=30):
-    """
-    Get videos for a specific hashtag in the last 'days' days.
-    """
-    print(f"Fetching videos for hashtag: #{hashtag}")
-    videos = api.by_hashtag(hashtag, count=200)  # Fetch the top 200 videos
-    filtered_videos = []
-    
-    # Filter videos by creation date
-    time_limit = datetime.now() - timedelta(days=days)
-    for video in videos:
-        create_time = datetime.fromtimestamp(video['createTime'])
-        if create_time >= time_limit:
-            filtered_videos.append({
-                "Video ID": video['id'],
-                "Author": video['author']['uniqueId'],
-                "Creation Date": create_time,
-                "Likes": video['stats']['diggCount'],
-                "Shares": video['stats']['shareCount'],
-                "Comments": video['stats']['commentCount'],
-                "Views": video['stats']['playCount'],
-            })
-    print(f"Found {len(filtered_videos)} videos in the last {days} days.")
-    return filtered_videos
+# Function to fetch videos by hashtag
+async def get_videos_by_hashtag(hashtag, count=100, days=7):
+    # Initialize the TikAPI client with your credentials
+    config = load_config()  # Load config data
+    client = tikapi.TikAPI(config["tikapi_key"])
 
-def analyze_accounts(videos):
-    """
-    Analyze accounts that shared the videos.
-    """
-    accounts = {}
-    for video in videos:
-        author = video["Author"]
-        if author not in accounts:
-            accounts[author] = {
-                "First Post Date": video["Creation Date"],
-                "Total Videos": 0,
-                "Total Likes": 0,
-                "Total Shares": 0,
-                "Total Comments": 0,
-                "Total Views": 0,
-            }
-        accounts[author]["Total Videos"] += 1
-        accounts[author]["Total Likes"] += video["Likes"]
-        accounts[author]["Total Shares"] += video["Shares"]
-        accounts[author]["Total Comments"] += video["Comments"]
-        accounts[author]["Total Views"] += video["Views"]
-    return accounts
+    try:
+        # Fetch videos related to a hashtag
+        response = await client.hashtag(hashtag).videos(count=count)  # Get videos by hashtag
 
-def generate_statistics(accounts):
-    """
-    Generate overview statistics for accounts.
-    """
-    total_accounts = len(accounts)
-    total_first_posts = [account["First Post Date"] for account in accounts.values()]
-    avg_creation_date = sum([post_date.timestamp() for post_date in total_first_posts]) / len(total_first_posts)
-    avg_creation_date = datetime.fromtimestamp(avg_creation_date)
-    
-    # Bot detection heuristic: accounts with low engagement and high frequency
-    suspected_bots = [
-        account for account, details in accounts.items()
-        if details["Total Videos"] > 10 and (details["Total Likes"] / details["Total Videos"]) < 10
-    ]
-    
-    return {
-        "Total Accounts": total_accounts,
-        "Average Creation Date": avg_creation_date,
-        "Suspected Bots": len(suspected_bots),
+        # Convert async generator to a list
+        video_data = []
+        async for video in response:
+            video_info = video.as_dict
+            stats = video_info.get('stats', {})
+            author_info = video_info.get('author', {})
+
+            # Only add videos that are within the time limit
+            time_limit = datetime.now() - timedelta(days=days)
+            create_time = datetime.utcfromtimestamp(video_info.get('createTime', 0))
+            if create_time >= time_limit:
+                video_data.append({
+                    "video_id": video_info.get('id', ''),
+                    "description": video_info.get('desc', ''),
+                    "likes": stats.get('diggCount', 0),
+                    "comments": stats.get('commentCount', 0),
+                    "shares": stats.get('shareCount', 0),
+                    "views": stats.get('playCount', 0),
+                    "create_time": create_time,
+                    "author_id": author_info.get('id', ''),
+                    "author_username": author_info.get('uniqueId', ''),
+                    "author_nickname": author_info.get('nickname', ''),
+                    "author_verified": author_info.get('verified', False),
+                    "author_followers": author_info.get('stats', {}).get('followerCount', 0),
+                    "author_following": author_info.get('stats', {}).get('followingCount', 0),
+                    "author_likes": author_info.get('stats', {}).get('heartCount', 0),
+                    "author_videos": author_info.get('stats', {}).get('videoCount', 0),
+                    "author_creation_date": author_info.get('createTime', 0),
+                })
+
+        # Check if no videos were returned
+        if len(video_data) == 0:
+            print("stopped")
+            sys.exit(0)  # Exit the program gracefully
+
+        return video_data
+
+    except Exception as e:
+        print(f"Error fetching videos: {e}")
+        return []
+
+# Save data to CSV
+def save_to_csv(video_data, file_name="tiktok_data.xlsx"):
+    if not video_data:
+        print("No data to save.")
+        return
+
+    # First sheet: Overview statistics
+    authors = {v['author_id']: v for v in video_data}.values()
+    overview_data = {
+        "Total Videos": len(video_data),
+        "Total Accounts": len(authors),
+        "Average Followers": sum(a["author_followers"] for a in authors) / len(authors),
+        "Average Likes": sum(a["author_likes"] for a in authors) / len(authors),
     }
 
-def export_to_csv(videos, accounts, stats, output_file="TikTok_Analysis.xlsx"):
-    """
-    Export data to an Excel file with multiple sheets.
-    """
-    # Sheet 1: Overview statistics
-    overview_df = pd.DataFrame([stats])
-    
-    # Sheet 2: Account details
-    accounts_df = pd.DataFrame.from_dict(accounts, orient="index").reset_index()
-    accounts_df.rename(columns={"index": "Account"}, inplace=True)
-    
-    # Sheet 3: Video details
-    videos_df = pd.DataFrame(videos)
-    
+    # Prepare data for sheets
+    df_videos = pd.DataFrame(video_data)
+    df_accounts = pd.DataFrame(authors)
+    df_overview = pd.DataFrame([overview_data])
+
     # Write to Excel
-    with pd.ExcelWriter(output_file, engine="openpyxl") as writer:
-        overview_df.to_excel(writer, sheet_name="Overview", index=False)
-        accounts_df.to_excel(writer, sheet_name="Accounts", index=False)
-        videos_df.to_excel(writer, sheet_name="Videos", index=False)
-    print(f"Data exported to {output_file}")
+    with pd.ExcelWriter(file_name, engine="openpyxl") as writer:
+        df_overview.to_excel(writer, index=False, sheet_name="Overview")
+        df_accounts.to_excel(writer, index=False, sheet_name="Accounts")
+        df_videos.to_excel(writer, index=False, sheet_name="Videos")
 
-# Main Execution
-HASHTAG = "echilibrusiverticalitate"
-DAYS = 30
+    print(f"Data saved to {file_name}")
 
-# Step 1: Get videos by hashtag
-videos = get_videos_by_hashtag(HASHTAG, days=DAYS)
+# Main execution
+async def main():
+    HASHTAG = "test"  # Replace with your desired hashtag
+    TOTAL_VIDEOS_COUNT = 1  # Fetch this many videos
+    DAYS = 7  # Fetch videos from the last 7 days
+    videos = await get_videos_by_hashtag(HASHTAG, count=TOTAL_VIDEOS_COUNT, days=DAYS)
+    save_to_csv(videos, file_name="tiktok_stats.xlsx")
 
-# Step 2: Analyze accounts
-accounts = analyze_accounts(videos)
-
-# Step 3: Generate statistics
-stats = generate_statistics(accounts)
-
-# Step 4: Export to CSV
-export_to_csv(videos, accounts, stats)
+# Run the script
+if __name__ == "__main__":
+    asyncio.run(main())

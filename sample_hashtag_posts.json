@@ -1,0 +1,233 @@
+{
+  "$other": {
+    "videoLinkHeaders": {
+      "Cookie": "tt_chain_token=TMXpDHM3PJdJYl8FEhqTZQ==;",
+      "Origin": "https://www.tiktok.com",
+      "Referer": "https://www.tiktok.com/"
+    }
+  },
+  "extra": {
+    "fatal_item_ids": [
+      "string"
+    ],
+    "logid": "202310131801477A6436ED37D083252847",
+    "now": 1697220107000
+  },
+  "itemInfo": {
+    "itemStruct": {
+      "BAInfo": "",
+      "adAuthorization": false,
+      "adLabelVersion": 0,
+      "author": {
+        "avatarLarger": "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/ab3567846dab3215a9b56e0e055382b5~c5_1080x1080.jpeg?x-expires=1697392800&x-signature=Uz0GViswYoy4LC3JlSQbtjwPtLQ%3D",
+        "avatarMedium": "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/ab3567846dab3215a9b56e0e055382b5~c5_720x720.jpeg?x-expires=1697392800&x-signature=%2BoygYwfeSs4ogtAm7cmbY9b6SiA%3D",
+        "avatarThumb": "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/ab3567846dab3215a9b56e0e055382b5~c5_100x100.jpeg?x-expires=1697392800&x-signature=PfXWtqvAsI3wHI%2F5TUNksd1X83c%3D",
+        "commentSetting": 0,
+        "downloadSetting": 0,
+        "duetSetting": 0,
+        "ftc": false,
+        "id": "6781957625476842501",
+        "isADVirtual": false,
+        "isEmbedBanned": false,
+        "nickname": "Hayley",
+        "openFavorite": false,
+        "privateAccount": false,
+        "relation": 0,
+        "secUid": "MS4wLjABAAAA2CYkfZjrAT5tGP2O-0xvW2q9G-tWADL1frxUUvyaZdmWmosKpZRu0QTBDdkHSPAU",
+        "secret": false,
+        "signature": "Hi ʕ•ᴥ•ʔ\n📧 hayley@dulcedo.com\nShop my lashes:",
+        "stitchSetting": 0,
+        "ttSeller": false,
+        "uniqueId": "hayleybuix",
+        "verified": false
+      },
+      "authorStats": {
+        "diggCount": 22500,
+        "followerCount": 3100000,
+        "followingCount": 540,
+        "friendCount": 0,
+        "heart": 132900000,
+        "heartCount": 132900000,
+        "videoCount": 849
+      },
+      "challenges": [
+        {
+          "coverLarger": "",
+          "coverMedium": "",
+          "coverThumb": "",
+          "desc": "",
+          "id": "25668",
+          "isCommerce": false,
+          "profileLarger": "",
+          "profileMedium": "",
+          "profileThumb": "",
+          "stats": {
+            "videoCount": 3900000,
+            "viewCount": 0
+          },
+          "title": "filter"
+        }
+      ],
+      "collected": false,
+      "contents": [
+        {
+          "desc": "Which one is your fav? #filter #tiktokfilter",
+          "textExtra": [
+            {
+              "awemeId": "",
+              "end": 30,
+              "hashtagId": "25668",
+              "hashtagName": "filter",
+              "isCommerce": false,
+              "secUid": "",
+              "start": 23,
+              "subType": 0,
+              "type": 1,
+              "userId": "",
+              "userUniqueId": ""
+            }
+          ]
+        }
+      ],
+      "createTime": 1630606743,
+      "desc": "Which one is your fav? #filter #tiktokfilter",
+      "digged": false,
+      "diversificationId": 10073,
+      "duetDisplay": 0,
+      "duetEnabled": true,
+      "duetInfo": {
+        "duetFromId": "0"
+      },
+      "effectStickers": [
+        {
+          "ID": "1112272",
+          "name": "Jelly Look",
+          "stickerStats": {
+            "useCount": 17100000
+          }
+        }
+      ],
+      "forFriend": false,
+      "id": "7003402629929913605",
+      "isActivityItem": false,
+      "isAd": false,
+      "itemCommentStatus": 0,
+      "itemMute": false,
+      "music": {
+        "album": "Flashbacks (Slowed)",
+        "authorName": "Craspore",
+        "coverLarge": "https://p16-sg.tiktokcdn.com/aweme/720x720/tos-alisg-v-2774/9092bb915dca42ea9005aec5b00ebb71.jpeg",
+        "coverMedium": "https://p16-sg.tiktokcdn.com/aweme/200x200/tos-alisg-v-2774/9092bb915dca42ea9005aec5b00ebb71.jpeg",
+        "coverThumb": "https://p16-sg.tiktokcdn.com/aweme/100x100/tos-alisg-v-2774/9092bb915dca42ea9005aec5b00ebb71.jpeg",
+        "duration": 60,
+        "id": "6971887778502019073",
+        "original": false,
+        "playUrl": "https://sf16-ies-music-sg.tiktokcdn.com/obj/tos-alisg-ve-2774/oowNu2gtohdJT1RkCkOGMvI5N9tv9BBQEzLZff",
+        "title": "Flashbacks - Slowed"
+      },
+      "officalItem": false,
+      "originalItem": false,
+      "playlistId": "",
+      "privateItem": false,
+      "secret": false,
+      "shareEnabled": true,
+      "showNotPass": false,
+      "stats": {
+        "collectCount": 0,
+        "commentCount": 557,
+        "diggCount": 174700,
+        "playCount": 4100000,
+        "shareCount": 1235
+      },
+      "stickersOnItem": [
+        {
+          "stickerText": [
+            "Rating Popular Tik Tok filters "
+          ],
+          "stickerType": 4
+        }
+      ],
+      "stitchDisplay": 0,
+      "stitchEnabled": true,
+      "textExtra": [
+        {
+          "awemeId": "",
+          "end": 30,
+          "hashtagId": "25668",
+          "hashtagName": "filter",
+          "isCommerce": false,
+          "secUid": "",
+          "start": 23,
+          "subType": 0,
+          "type": 1,
+          "userId": "",
+          "userUniqueId": ""
+        }
+      ],
+      "video": {
+        "bitrate": 908247,
+        "bitrateInfo": [
+          {
+            "Bitrate": 908247,
+            "CodecType": "h264",
+            "GearName": "normal_720_0",
+            "PlayAddr": {
+              "DataSize": 2820448,
+              "FileCs": "c:0-21674-1d32",
+              "FileHash": "011a90e3fd6cb50415edc098045bac93",
+              "Uri": "v09044g40000c4ohanbc77u88dlsgdmg",
+              "UrlKey": "v09044g40000c4ohanbc77u88dlsgdmg_h264_720p_908247",
+              "UrlList": [
+                "https://v16m-default.tiktokcdn-us.com/cbbc27b1e18d8c96b806d25d9ee06415/6529da83/video/tos/useast2a/tos-useast2a-ve-0068c003/04445133ad8e432abe590a611d0e7d05/?a=1988&ch=0&cr=3&dr=0&lr=tiktok_m&cd=0%7C0%7C1%7C3&cv=1&br=1772&bt=886&bti=NDU3ZjAwOg%3D%3D&cs=0&ds=3&ft=_G6uMBnZq8ZmoRNv.Q_vj-mnsAhLrus&mime_type=video_mp4&qs=0&rc=ZDM8PGczNTY3aGU7OjxmaEBpamd2Zzs6ZnFrNzMzNzczM0BiMS1eLjM0XzMxX2IuMTQ2YSNqZGk1cjRfXmxgLS1kMTZzcw%3D%3D&l=202310131801477A6436ED37D083252847&btag=e00008000"
+              ]
+            },
+            "QualityType": 10
+          }
+        ],
+        "codecType": "h264",
+        "cover": "https://p16-sign-va.tiktokcdn.com/obj/tos-maliva-p-0068/61a0b51bfd5b4a3c9f13d39ad018f885?x-expires=1697392800&x-signature=7acTvpGbCSrF7nlpbtzD7M8JYYw%3D",
+        "definition": "720p",
+        "downloadAddr": "https://v16m-default.tiktokcdn-us.com/cbbc27b1e18d8c96b806d25d9ee06415/6529da83/video/tos/useast2a/tos-useast2a-ve-0068c003/04445133ad8e432abe590a611d0e7d05/?a=1988&ch=0&cr=3&dr=0&lr=tiktok_m&cd=0%7C0%7C1%7C3&cv=1&br=1772&bt=886&bti=NDU3ZjAwOg%3D%3D&cs=0&ds=3&ft=_G6uMBnZq8ZmoRNv.Q_vj-mnsAhLrus&mime_type=video_mp4&qs=0&rc=ZDM8PGczNTY3aGU7OjxmaEBpamd2Zzs6ZnFrNzMzNzczM0BiMS1eLjM0XzMxX2IuMTQ2YSNqZGk1cjRfXmxgLS1kMTZzcw%3D%3D&l=202310131801477A6436ED37D083252847&btag=e00008000",
+        "duration": 24,
+        "dynamicCover": "https://p16-sign-va.tiktokcdn.com/obj/tos-maliva-p-0068/864f940aa5f648ca8512d242172310c8_1630606745?x-expires=1697392800&x-signature=UvxIauel0vxkSUQTAUuWmjYpTfs%3D",
+        "encodeUserTag": "",
+        "encodedType": "normal",
+        "format": "mp4",
+        "height": 1024,
+        "id": "7003402629929913605",
+        "originCover": "https://p16-sign-va.tiktokcdn.com/obj/tos-maliva-p-0068/35bb7f754b1044659298419fd2b0f527_1630606746?x-expires=1697392800&x-signature=uB4BwbwtasscpC9%2B36IRZmULoqk%3D",
+        "playAddr": "https://v16m-default.tiktokcdn-us.com/cbbc27b1e18d8c96b806d25d9ee06415/6529da83/video/tos/useast2a/tos-useast2a-ve-0068c003/04445133ad8e432abe590a611d0e7d05/?a=1988&ch=0&cr=3&dr=0&lr=tiktok_m&cd=0%7C0%7C1%7C3&cv=1&br=1772&bt=886&bti=NDU3ZjAwOg%3D%3D&cs=0&ds=3&ft=_G6uMBnZq8ZmoRNv.Q_vj-mnsAhLrus&mime_type=video_mp4&qs=0&rc=ZDM8PGczNTY3aGU7OjxmaEBpamd2Zzs6ZnFrNzMzNzczM0BiMS1eLjM0XzMxX2IuMTQ2YSNqZGk1cjRfXmxgLS1kMTZzcw%3D%3D&l=202310131801477A6436ED37D083252847&btag=e00008000",
+        "ratio": "720p",
+        "reflowCover": "https://p16-sign-va.tiktokcdn.com/tos-maliva-p-0068/61a0b51bfd5b4a3c9f13d39ad018f885~tplv-photomode-video-cover:480:480.jpeg?x-expires=1697392800&x-signature=yGzu2O3vyZs92JpNKi8Sk6uNX8M%3D",
+        "shareCover": [
+          "https://p16-sign-va.tiktokcdn.com/tos-maliva-p-0068/61a0b51bfd5b4a3c9f13d39ad018f885~tplv-photomode-video-share-card:630:630:20.jpeg?x-expires=1697824800&x-signature=ZFffMgMjnHRyuF3fk0HP8v1ejLs%3D"
+        ],
+        "size": 2820448,
+        "videoQuality": "normal",
+        "volumeInfo": {
+          "Loudness": -9.3,
+          "Peak": 1
+        },
+        "width": 576,
+        "zoomCover": {
+          "240": "https://p16-sign-va.tiktokcdn.com/tos-maliva-p-0068/61a0b51bfd5b4a3c9f13d39ad018f885~tplv-photomode-zoomcover:240:240.jpeg?x-expires=1697392800&x-signature=PMeYVJEJ4UE%2BBB9ELtq42IfZzCQ%3D",
+          "480": "https://p16-sign-va.tiktokcdn.com/tos-maliva-p-0068/61a0b51bfd5b4a3c9f13d39ad018f885~tplv-photomode-zoomcover:480:480.jpeg?x-expires=1697392800&x-signature=T2Ki1nCKoahzRt7JDfC12Rmvlqc%3D",
+          "720": "https://p16-sign-va.tiktokcdn.com/tos-maliva-p-0068/61a0b51bfd5b4a3c9f13d39ad018f885~tplv-photomode-zoomcover:720:720.jpeg?x-expires=1697392800&x-signature=Gmik7niCIR1LlqpiTEiAZeqTV10%3D",
+          "960": "https://p16-sign-va.tiktokcdn.com/tos-maliva-p-0068/61a0b51bfd5b4a3c9f13d39ad018f885~tplv-photomode-zoomcover:960:960.jpeg?x-expires=1697392800&x-signature=0ITEFUo06RM3pH1ebgQRfVLqA0Y%3D"
+        }
+      },
+      "vl1": false
+    }
+  },
+  "log_pb": {
+    "impr_id": "202310131801477A6436ED37D083252847"
+  },
+  "message": "",
+  "shareMeta": {
+    "desc": "174.7K likes, 557 comments. “Which one is your fav?”",
+    "title": "TikTok · Hayley"
+  },
+  "status": "success",
+  "statusCode": 0,
+  "status_code": 0
+}
