@@ -2,11 +2,11 @@
 
 ## Mission
 
-**Vreau, împreună, să ajutăm la găsirea botilor care au ajutat la fraudarea alegerilor și manipularea socială prin conturi false de pe TikTok.**
+**Vreau, împreună, să ajutăm la găsirea botilor care au ajutat la manipularea mediatică și socială prin conturi false pe TikTok.**
 
-Încerc să ajut, fiindcă, din păcate, autoritățile sunt depășite. Există un dosar deschis la SIE (Serviciul de Informații Externe) / SRI (Serviciul Român de Informații), care constată că au fost folosite zeci de mii de conturi false de pe TikTok, coordonate de China, Rusia, Iran, după cum spune Dragoș Pătraru în acest video: [Dragoș Pătraru - YouTube](https://www.youtube.com/watch?v=Uqi7AvfkNvU).
+Încerc să ajut, fiindcă, din păcate, autoritățile sunt depășite. Există un dosar deschis la SIE (Serviciul de Informații Externe), care constată că au fost folosite zeci de mii de conturi false de pe TikTok, coordonate, posibil, de China, Rusia, Iran, după cum spune Dragoș Pătraru în acest video: [Dragoș Pătraru - YouTube](https://www.youtube.com/live/Uqi7AvfkNvU?si=PvC1H54z1EX7mIoY&t=1079).
 
-## About the Owner
+## About the Author
 
 Sunt un simplu programator, îngrijorat de soarta țării. Găsești mai multe informații despre mine pe [LinkedIn](https://www.linkedin.com/in/sorinnicumarian/).
 
@@ -14,7 +14,7 @@ Sunt un simplu programator, îngrijorat de soarta țării. Găsești mai multe i
 
 ## About the Project
 
-Acest proiect este, deocamdată, un simplu fișier Python care face requesturi printr-o librărie neoficială TikTok, numită [TikAPI](https://tikapi.io/).
+Acest proiect este, deocamdată, un simplu fișier Python care face requesturi printr-o librărie neoficială TikTok, numită [TikAPI](https://tikapi.io/), pentru a strange date despre anumite hashtaguri folosite de Calin Georgescu.
 
 ### How to Use
 
@@ -30,7 +30,7 @@ Acest proiect este, deocamdată, un simplu fișier Python care face requesturi p
 
 ## Contribute
 
-Daca doriti sa ajutati puteti sa ma contactati pe email, sau direct prin Pull Requests pe github.
+Daca doriti sa ajutati puteti sa ma contactati pe email, sau direct prin comentarii/Pull Requests pe Github.
 
 ## Conclusion
 
