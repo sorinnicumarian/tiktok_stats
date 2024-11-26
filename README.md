@@ -2,7 +2,7 @@
 
 ## Misiune
 
-**Vreau, împreună, să ajutăm la găsirea botilor care au ajutat la manipularea mediatică și socială prin conturi false pe TikTok.**
+**Vreau, împreună, să ajutăm la găsirea botilor care au interferat alegerile prezidențiale, prin manipulare mediatică și socială pe TikTok.**
 
 Încerc să ajut, fiindcă, din păcate, autoritățile sunt depășite. Există un dosar deschis la SIE (Serviciul de Informații Externe), care constată că au fost folosite zeci de mii de conturi false de pe TikTok, coordonate, posibil, de China, Rusia, Iran, după cum spune Dragoș Pătraru în acest video: [Dragoș Pătraru - YouTube](https://www.youtube.com/live/Uqi7AvfkNvU?si=PvC1H54z1EX7mIoY&t=1079).
 
@@ -18,7 +18,7 @@ Acest proiect este, deocamdată, un simplu fișier Python care face requesturi p
 
 ### Manual de Utilizare
 
-1. Am folosit un proiect Python, cu VS Code, și un virtual environment. E nevoie de VS Code, Python3 și pip. Pași de instalare:
+1. Am folosit Python, VS Code, și un virtual environment. E nevoie de VS Code, Python3 și pip. Pași de instalare:
    1.1. `python3 get-pip.py`  
    1.2. `pip3 install TikTokApi pandas openpyxl playwright`  
    1.3. `python3 -m venv tiktok_env`  
@@ -26,16 +26,16 @@ Acest proiect este, deocamdată, un simplu fișier Python care face requesturi p
 
 2. **TikAPI Account**: Pentru a folosi acest proiect, trebuie să creezi un cont trial pe TikAPI, la care poți adăuga un card Revolut pentru a beneficia de 2000 de requesturi într-o lună. Cheia salveaz-o într-un fișier separat numit `config.json`, sub numele de `tikapi_key`.
    
-3. **Fetching Video Data**: Scriptul actual adună informații despre video-uri și autori de pe TikTok, dar nu sunt încă foarte relevante pentru detectarea botilor. Cu ajutorul comunității și al celor care contribuie, putem găsi o direcție mai bună în acest sens.
+3. **Fetching Video Data**: Scriptul actual adună informații despre video-uri și autori de pe TikTok, dar nu sunt încă foarte relevante pentru detectarea botilor. Cu ajutor, putem găsi o direcție mai bună.
 
-4. **JSON Responses**: Deocamdată, scriptul caută câmpuri de bază cum ar fi vizualizările, comentariile și like-urile. Este necesar să adăugăm un filtru mai detaliat pentru a identifica conturile false.
+4. **JSON Responses**: Deocamdată, scriptul caută câmpuri de bază cum ar fi vizualizările, comentariile și like-urile. Trebuie un filtru mai specific pentru a identifica conturile false.
 
 ## Contribuie
 
 Cum poți ajuta?  
 1. Găsirea unor câmpuri mai relevante pentru descoperirea botilor:  
    - Se pot căuta în debug în răspunsurile JSON de la TikAPI.  
-   - Se pot căuta pe TikTok sau alte cazuri de interferență politică pentru câmpuri mai relevante care ar putea contribui la identificarea botilor.  
+   - Se pot căuta pe TikTok sau alte cazuri de interferență politică pentru câmpuri mai relevante, sau alte modalitati.  
 
 2. Dacă dorești să ajuți, poți să mă contactezi pe email sau direct prin comentarii/Pull Requests pe GitHub.
 
