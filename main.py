@@ -1,101 +1,106 @@
-import asyncio
 import tikapi
 import pandas as pd
-from datetime import datetime, timedelta
-import sys
+from datetime import datetime
 import json
+from tikapi import TikAPI, ValidationException, ResponseException
 
 def load_config(config_file="config.json"):
     with open(config_file, 'r') as f:
         return json.load(f)
 
-# Function to fetch videos by hashtag
-async def get_videos_by_hashtag(hashtag, count=100, days=7):
-    # Initialize the TikAPI client with your credentials
-    config = load_config()  # Load config data
-    client = tikapi.TikAPI(config["tikapi_key"])
+config = load_config()  # Load config data
+api = tikapi.TikAPI(config["tikapi_key"])
 
-    try:
-        # Fetch videos related to a hashtag
-        response = await client.hashtag(hashtag).videos(count=count)  # Get videos by hashtag
+def get_videos_by_hashtag(hashtag_name, max_videos=2):
+    videos = []
+    response = api.public.hashtag(name=hashtag_name)
+    
+    if 'challengeInfo' in response.json() and 'challenge' in response.json()['challengeInfo']:
+        hashtag_id = response.json()['challengeInfo']['challenge']['id']
+        response = api.public.hashtag(id=hashtag_id)
+        
+        # Initialize a counter for the videos
+        video_count = 0
+        
+        while response and video_count < max_videos:
+            items_list = response.json().get('itemList', [])
 
-        # Convert async generator to a list
-        video_data = []
-        async for video in response:
-            video_info = video.as_dict
-            stats = video_info.get('stats', {})
-            author_info = video_info.get('author', {})
+            for item in items_list:
+                video_id = item.get('id')
+                if video_id:
+                    videos.append(video_id)
+                    video_count += 1  # Increment the video count
+                    if video_count >= max_videos:
+                        break  # Stop if we've reached the max_videos limit
+            if video_count < max_videos:
+                # Fetch next page of results if there are more videos
+                response = api.public.hashtag(id=hashtag_id, cursor=response.json().get('cursor'))
+            else:
+                break  # Exit while loop once we have enough videos
 
-            # Only add videos that are within the time limit
-            time_limit = datetime.now() - timedelta(days=days)
-            create_time = datetime.utcfromtimestamp(video_info.get('createTime', 0))
-            if create_time >= time_limit:
-                video_data.append({
-                    "video_id": video_info.get('id', ''),
-                    "description": video_info.get('desc', ''),
-                    "likes": stats.get('diggCount', 0),
-                    "comments": stats.get('commentCount', 0),
-                    "shares": stats.get('shareCount', 0),
-                    "views": stats.get('playCount', 0),
-                    "create_time": create_time,
-                    "author_id": author_info.get('id', ''),
-                    "author_username": author_info.get('uniqueId', ''),
-                    "author_nickname": author_info.get('nickname', ''),
-                    "author_verified": author_info.get('verified', False),
-                    "author_followers": author_info.get('stats', {}).get('followerCount', 0),
-                    "author_following": author_info.get('stats', {}).get('followingCount', 0),
-                    "author_likes": author_info.get('stats', {}).get('heartCount', 0),
-                    "author_videos": author_info.get('stats', {}).get('videoCount', 0),
-                    "author_creation_date": author_info.get('createTime', 0),
-                })
+    return videos
 
-        # Check if no videos were returned
-        if len(video_data) == 0:
-            print("stopped")
-            sys.exit(0)  # Exit the program gracefully
+def get_video_info_by_id(video_id):
+    video_response = api.public.video(id=video_id)
+    video_data = video_response.json()
 
-        return video_data
+    video_info = {
+        "video_id": video_id,
+        "views": video_data.get('itemInfo', {}).get('itemStruct', {}).get('stats', {}).get('playCount'),
+        "likes": video_data.get('itemInfo', {}).get('itemStruct', {}).get('stats', {}).get('diggCount'),
+        "comments": video_data.get('itemInfo', {}).get('itemStruct', {}).get('stats', {}).get('commentCount'),
+        "isAd": video_data.get('itemInfo', {}).get('itemStruct', {}).get('isAd'),
+        "creation_date": video_data.get('itemInfo', {}).get('itemStruct', {}).get('createTime'),
+        "shareCount": video_data.get('itemInfo', {}).get('itemStruct', {}).get('stats', {}).get('shareCount'),
+        "author_username": video_data.get('itemInfo', {}).get('itemStruct', {}).get('author', {}).get('uniqueId'),
+        "author_verified": video_data.get('itemInfo', {}).get('itemStruct', {}).get('author', {}).get('verified'),
+        "author_followers_count": video_data.get('itemInfo', {}).get('itemStruct', {}).get('authorStats', {}).get('followerCount'),
+        "author_following_count": video_data.get('itemInfo', {}).get('itemStruct', {}).get('authorStats', {}).get('followingCount'),
+        "author_friend_count": video_data.get('itemInfo', {}).get('itemStruct', {}).get('authorStats', {}).get('friendCount'),
+        "author_heart_count": video_data.get('itemInfo', {}).get('itemStruct', {}).get('authorStats', {}).get('heartCount'),
+        "author_video_count": video_data.get('itemInfo', {}).get('itemStruct', {}).get('authorStats', {}).get('videoCount')
+    }
 
-    except Exception as e:
-        print(f"Error fetching videos: {e}")
-        return []
+    # Convert timestamp to human-readable format
+    creation_timestamp = video_info["creation_date"]
+    if creation_timestamp:
+        video_info["creation_date"] = datetime.utcfromtimestamp(creation_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+    
+    return video_info
 
-# Save data to CSV
 def save_to_csv(video_data, file_name="tiktok_data.xlsx"):
     if not video_data:
         print("No data to save.")
         return
 
-    # First sheet: Overview statistics
-    authors = {v['author_id']: v for v in video_data}.values()
-    overview_data = {
-        "Total Videos": len(video_data),
-        "Total Accounts": len(authors),
-        "Average Followers": sum(a["author_followers"] for a in authors) / len(authors),
-        "Average Likes": sum(a["author_likes"] for a in authors) / len(authors),
-    }
-
-    # Prepare data for sheets
+    # Convert video data into a pandas DataFrame for easy manipulation
     df_videos = pd.DataFrame(video_data)
-    df_accounts = pd.DataFrame(authors)
-    df_overview = pd.DataFrame([overview_data])
 
-    # Write to Excel
-    with pd.ExcelWriter(file_name, engine="openpyxl") as writer:
-        df_overview.to_excel(writer, index=False, sheet_name="Overview")
-        df_accounts.to_excel(writer, index=False, sheet_name="Accounts")
-        df_videos.to_excel(writer, index=False, sheet_name="Videos")
+    # Save the DataFrame to an Excel file
+    df_videos.to_excel(file_name, index=False, sheet_name="Videos")
 
     print(f"Data saved to {file_name}")
 
-# Main execution
-async def main():
-    HASHTAG = "test"  # Replace with your desired hashtag
-    TOTAL_VIDEOS_COUNT = 1  # Fetch this many videos
-    DAYS = 7  # Fetch videos from the last 7 days
-    videos = await get_videos_by_hashtag(HASHTAG, count=TOTAL_VIDEOS_COUNT, days=DAYS)
-    save_to_csv(videos, file_name="tiktok_stats.xlsx")
+def main():
+    hashtag_name = "echilibrusiverticalitate"
+    max_videos = 1  # Adjust to get more videos if needed
 
-# Run the script
+    # Get video IDs by hashtag
+    video_ids = get_videos_by_hashtag(hashtag_name, max_videos)
+    
+    video_data = []
+
+    if video_ids:
+        # Fetch and store info for each video
+        for video_id in video_ids:
+            video_info = get_video_info_by_id(video_id)
+            video_data.append(video_info)
+            print(json.dumps(video_info, indent=4))
+        
+        # Save collected video data to a CSV/Excel file
+        save_to_csv(video_data, file_name="tiktok_video_data.xlsx")
+    else:
+        print(f"No videos found for hashtag '{hashtag_name}'.")
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
