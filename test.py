@@ -12,44 +12,21 @@ def load_config(config_file="config.json"):
 config = load_config()  # Load config data
 api = tikapi.TikAPI(config["tikapi_key"])
 
-def get_videos_by_id(id):
-    try:
-        response = api.public.video(
-            id=id
-        )
+def get_videos_by_hashtag(hashtag_name):
 
-        print(response.json())
+    response = api.public.hashtag(name=hashtag_name)
+    hashtag_id = response.json()['challengeInfo']['challenge']['id']
+    response = api.public.hashtag(id=hashtag_id)
 
-    except ValidationException as e:
-        print(e, e.field)
+    while(response):
+        cursor = response.json().get('cursor')
+        response = response.next_items()
 
-    except ResponseException as e:
-        print(e, e.response.status_code)
+def get_video_info_by_id(video_id):
+    video_response = api.public.video(id=video_id)
+    #TODO write code to get the following info: video number of views, likes, comments, creation date, author_username, author_verified, author_followers, author_following, author_likes_count, author_videos_count, author_creation_date
+    return 
 
-def get_videos_by_hashtag():
-    try:
-        response = api.public.hashtag(
-            name="echilibrusiverticalitate"
-        )
-
-        hashtagId = response.json()['challengeInfo']['challenge']['id']
-
-        response = api.public.hashtag(
-            id=hashtagId
-        )
-
-        print(response.json())
-
-        while(response):
-            cursor = response.json().get('cursor')
-            print("Getting next items ", cursor)
-            response = response.next_items()
-            
-
-    except ValidationException as e:
-        print(e, e.field)
-
-    except ResponseException as e:
-        print(e, e.response.status_code)
-
-get_videos_by_id("7003402629929913605")
+#TODO write code for a main function
+#TODO get only the first 2 videos
+get_videos_by_hashtag("echilibrusiverticalitate")
