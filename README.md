@@ -4,7 +4,7 @@
 
 **Vreau, împreună, să ajutăm la găsirea botilor care au interferat alegerile prezidențiale, prin manipulare mediatică și socială pe TikTok.**
 
-Încerc să ajut, fiindcă, din păcate, autoritățile sunt depășite. Există un dosar deschis la SIE (Serviciul de Informații Externe), care constată că au fost folosite zeci de mii de conturi false de pe TikTok, coordonate, posibil, de China, Rusia, Iran, după cum spune Dragoș Pătraru în acest video: [Dragoș Pătraru - YouTube](https://www.youtube.com/live/Uqi7AvfkNvU?si=PvC1H54z1EX7mIoY&t=1079).
+Încerc să ajut, fiindcă, din păcate, autoritățile sunt depășite. Există un dosar deschis la SIE (Serviciul de Informații Externe), care constată că au fost folosite zeci de mii de conturi false de pe TikTok, coordonate, posibili suspecti fiind China, Rusia, Iran, după cum spune Dragoș Pătraru în acest video: [Dragoș Pătraru - YouTube](https://www.youtube.com/live/Uqi7AvfkNvU?si=PvC1H54z1EX7mIoY&t=1079).
 
 ## Autor
 
