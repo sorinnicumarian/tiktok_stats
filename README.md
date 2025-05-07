@@ -1,4 +1,54 @@
-# TikTok Bot Detection Project
+# TikTok Bot Detection Project - EN
+
+## Mission
+
+**I want us to work together to help identify bots that interfered with the presidential elections through media and social manipulation on TikTok.**
+
+I'm trying to help because, unfortunately, the authorities are overwhelmed. There is an open investigation at SIE (the Romanian Foreign Intelligence Service), which confirms that tens of thousands of fake TikTok accounts were used in a coordinated manner. The possible suspects are China, Russia, and Iran, as mentioned by Dragoș Pătraru in this video: [Dragoș Pătraru - YouTube](https://www.youtube.com/live/Uqi7AvfkNvU?si=PvC1H54z1EX7mIoY&t=1079).
+
+## Author
+
+I'm just a simple programmer, concerned about the fate of my country. You can find more about me on [LinkedIn](https://www.linkedin.com/in/sorinnicumarian/).
+
+**Email**: sorinnicumarian@gmail.com
+
+## Project
+
+This project is currently just a simple Python script that makes requests through an unofficial TikTok library called [TikAPI](https://tikapi.io/), to gather data about specific hashtags used by Călin Georgescu. I started with the hashtag `#echilibrusiverticalitate`, as mentioned in this [G4Media article](https://www.g4media.ro/expert-forum-campania-echilibrusiverticalitate-de-pe-tiktok-a-fost-a-lui-calin-georgescu-cum-a-crescut-calin-georgescu-in-sondaje-studiu.html).
+
+### Usage Instructions
+
+1. The script uses Python, VS Code, and a virtual environment. You'll need Python 3, pip, and optionally VS Code. Setup steps:
+   1.1. `python3 get-pip.py`  
+   1.2. `pip3 install TikTokApi pandas openpyxl playwright`  
+   1.3. `python3 -m venv tiktok_env`  
+   1.4. `source tiktok_env/bin/activate`                                    
+
+2. **TikAPI Account**: Create a free trial account at TikAPI. You can use a Revolut card to activate the account and get up to 2000 requests per month. Save your API key in a separate file named `config.json` with the field `tikapi_key`.
+
+3. **Fetching Video Data**: The current script collects basic information about videos and authors on TikTok. These aren't very useful for bot detection yet, but with help, we can improve the direction.
+
+4. **JSON Responses**: The script currently looks for basic fields like views, comments, and likes. More specific filters are needed to detect fake accounts.
+
+## Contribute
+
+How you can help:
+1. Identify more relevant fields for bot detection:  
+   - Explore the JSON responses from TikAPI in debug mode.  
+   - Look for similar political interference cases or TikTok data leaks to inspire better filtering.
+
+2. If you'd like to contribute, feel free to email me or open issues/pull requests on GitHub.
+
+## Conclusion
+
+Hopefully, by collecting and submitting this data to a trusted media source, we can increase transparency around this manipulation phenomenon, assist authorities in doing their job better, and contribute to a stronger democracy. Every citizen should be able to vote consciously and informed, without being influenced by fake accounts or foreign propaganda.
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+
+# TikTok Bot Detection Project - RO
 
 ## Misiune
 
@@ -10,7 +60,7 @@
 
 Sunt un simplu programator, îngrijorat de soarta țării. Găsești mai multe informații despre mine pe [LinkedIn](https://www.linkedin.com/in/sorinnicumarian/).
 
-**Email**: sorinmarian.it@gmail.com
+**Email**: sorinnicumarian@gmail.com
 
 ## Proiect
 
